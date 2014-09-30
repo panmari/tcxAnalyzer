@@ -1,0 +1,7 @@
+# Tcx Analyzer
+
+A simple analyzer for [tcx files](http://en.wikipedia.org/wiki/Training_Center_XML),
+a pseudo open standard for activity tracking by garmin.
+
+You may download such files easily over the service provided by [https://tapiriik.com/](https://tapiriik.com/).
+This allows you to sync workouts from various providers to your dropbox.
