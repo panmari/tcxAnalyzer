@@ -26,6 +26,11 @@ class Activity
   def calories
     laps.reduce(0) { |sum, l| sum + l.calories }
   end
+
+  def <<(lap)
+    laps << lap
+  end
+
   def to_s
     "#{sport} " + laps.to_s
   end
