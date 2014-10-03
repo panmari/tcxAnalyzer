@@ -8,6 +8,8 @@ tcx_files = Dir.glob(tcx_path + '*.tcx')
 
 activities = []
 tcx_files.each { |i| activities += TcxParser.parse(i) }
+
+activities.uniq! { |a| a.id }
 activities.sort_by! &:start_time
 
 first = 1.year.ago

@@ -1,10 +1,14 @@
 require_relative 'lap'
 
 class Activity
-  attr_accessor :laps, :sport
+  attr_accessor :laps, :sport, :id
 
   def initialize
     @laps = []
+  end
+
+  def eql?(other)
+    id.eql? other.id
   end
 
   def start_time

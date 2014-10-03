@@ -10,9 +10,9 @@ class TcxParser
     xml.xpath("//Activity").each do |activity|
       a = Activity.new
       a.sport = activity['Sport']
+      a.id = activity.xpath('Id').first.content
       activity.xpath('Lap').each do |lap|
         l = Lap.new
-        l.id = activity.xpath('Id').children
         l.start_time = DateTime.parse(lap['StartTime'])
         l.total_time_seconds = lap.xpath('TotalTimeSeconds').first.content.to_f
         l.distance_meters = lap.xpath('DistanceMeters').first.content.to_f
