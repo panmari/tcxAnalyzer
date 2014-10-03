@@ -16,7 +16,7 @@ class TcxParser
         l.start_time = DateTime.parse(lap['StartTime'])
         l.total_time_seconds = lap.xpath('TotalTimeSeconds').first.content.to_f
         l.distance_meters = lap.xpath('DistanceMeters').first.content.to_f
-        l.maximum_speed = lap.xpath('MaximumSpeed').first.content.to_f
+        l.maximum_speed = lap.xpath('MaximumSpeed').first.content.to_f rescue nil # might be missing
         l.calories = lap.xpath('Calories').first.content.to_i
         a.laps << l
       end
