@@ -7,8 +7,8 @@ class Activity
     @laps = []
   end
 
-  def eql?(other)
-    id.eql? other.id
+  def ==(other)
+    id == other.id
   end
 
   def start_time

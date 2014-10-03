@@ -19,18 +19,22 @@ bin_size = :week
 binned_activities = Hash.new {|h, k| h[k] = ActivityAggregate.new }
 activities.each do |a|
   next if a.start_time < first
+  next if a.sport != 'Running'
   break if a.start_time > last
   bin = a.start_time.beginning_of_week
   binned_activities[bin] << a
 end
 
-g = Gruff::Bar.new
+g = Gruff::Bar.new('1000x600')
 g.title = 'Running chart'
+g.hide_legend = true
 
 label_hash = Hash.new
-# TODO(panmari): Possibly rotate/leave out certain labels
-binned_activities.keys.each_with_index { |k, i| label_hash[i] = k.strftime('%m/%d')}
-
+binned_activities.keys.each_with_index { |k, i| label_hash[i] = k.strftime('%d.%m.%y')}
+# Reduce the number of labels
+number_labels = 6
+m = binned_activities.count/number_labels
+label_hash.select! { |k, _| k % m == 0}
 g.labels = label_hash
 # TODO(panmari): Allow other measures than distance_meters summed up
 g.data :running, binned_activities.values.map(&:distance_meters)
