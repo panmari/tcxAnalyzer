@@ -35,7 +35,13 @@ class Activity
     laps << lap
   end
 
-  def to_s
-    "#{sport} " + laps.to_s
+  # in kilometers per hour
+  def average_speed
+    (distance_meters.to_f / 1000) / (total_time_seconds / 60 / 60)
+  end
+
+  # in minutes per kilometer
+  def average_pace
+    (total_time_seconds.to_f / 60) / (distance_meters / 1000)
   end
 end
